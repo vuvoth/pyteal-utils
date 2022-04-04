@@ -2,6 +2,7 @@ pyteal_utils.egg-info/
 __pycache__/
 .venv/
 .vscode/
+poetry.lock
 
 # Sphinx documentation
 docs/build/

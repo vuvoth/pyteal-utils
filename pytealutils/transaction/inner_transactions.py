@@ -30,3 +30,18 @@ def pay(receiver, amt) -> Expr:
         ),
         InnerTxnBuilder.Submit(),
     )
+
+@Subroutine(TealType.none)
+def call_application(appl_id, args) -> Expr:
+    return Seq(
+        InnerTxnBuilder.Begin(),
+        InnerTxnBuilder.SetFields(
+            {
+                TxnField.type_enum: TxnField.ApplicationCall,
+                TxnField.application_id: appl_id,
+                TxnField.on_complete: OnComplete.NoOp,
+                TxnField.application_args: args
+            }
+        ),
+        InnerTxnBuilder.Submit()
+    )
